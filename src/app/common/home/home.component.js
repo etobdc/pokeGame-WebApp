@@ -4,6 +4,10 @@ import './home.component.scss';
 export const HomeComponent = {
   templateUrl,
   controller: class HomeController{
+    constructor($scope){
+      'ngInject';
+      this.$scope = $scope;
+    }
     godDamn(){
       alert('God Damn');
     }
@@ -30,27 +34,9 @@ export const HomeComponent = {
       }
     }
 
-    playerMove(direction){
-      switch (direction) {
-        case 'down':
-        this._playerDown();
-        break;
-        case 'up':
-        this._playerUp();
-        break;
-        case 'left':
-        this._playerLeft();
-        break;
-        case 'right':
-        this._playerRight();
-        break;
-        default:
-        console.log(123);
-        break;
-      }
-    }
     arrows(){
-      window.addEventListener("keydown", function (event) {
+      window.addEventListener("keydown", (event) => {
+        console.log(event);
         if (event.defaultPrevented) {
           return; // Do nothing if the event was already processed
         }
@@ -82,6 +68,28 @@ export const HomeComponent = {
         event.preventDefault();
       }, true);
     }
+
+    playerMove(direction){
+      switch (direction) {
+        case 'down':
+        this._playerDown();
+        break;
+        case 'up':
+        this._playerUp();
+        break;
+        case 'left':
+        this._playerLeft();
+        break;
+        case 'right':
+        this._playerRight();
+        break;
+        default:
+        console.log(123);
+        break;
+      }
+      this.$scope.$apply();
+    }
+
     _playerDown(){
       this.player.position.y = this.player.position.y+1;
     }
