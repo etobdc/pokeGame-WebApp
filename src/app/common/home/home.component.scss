@@ -48,15 +48,15 @@
     }
   }
 }
-body{
-  overflow: hidden;
+home{
+  position: fixed;
 }
 .pokeMap{
   overflow: hidden;
   td{
     border: 1px solid #fff;
-    padding: 0.5em;
-    height: 25px;
+    height: 3em;
+    width: 3em;
     font-size: 12px;
   }
 }

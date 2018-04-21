@@ -1,0 +1,42 @@
+<section>
+  <div class="container">
+    <div class="row justify-content-center align-items-center text-center">
+      <div class="col-12">
+        <h1 class="pokeTitulo">PokeMap</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container" ng-if="$ctrl.totalMapa">
+    <ul class="row justify-content-center align-items-center pokeListaBlocos">
+      <li>
+        <button type="button" class="btn btn-info" ng-click="$ctrl.refresh()">Refresh</button>
+      </li>
+      <li ng-class="{'tipoSelected': $ctrl.type == $index}" ng-repeat="item in [0,1,2,3,4,5,6,7,8,9]" ng-click="$ctrl.type = $index">Tipo {{$index}}</li>
+    </ul>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="row justify-content-center">
+          <form ng-submit="$ctrl.setaTamanhoMapa(form)" ng-if="!$ctrl.totalMapa">
+            <div class="form-group" ng-model="form">
+              <input autofocus placeholder="Tamanho do mapa" ng-disable="$ctrl.totalMapa" type="number" ng-model="form.totalMapa" required="" min="10">
+            </div>
+            <button type="submit" class="btn btn-success w-100">Setar Tamanho</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-12 pokeOverflow-auto">
+        <table class="pokeMap pokeMapTable d-flex justify-content-center pokeOverflow-auto">
+          <tbody>
+            <tr ng-repeat="map in $ctrl.mapa">
+              <td ng-click="$ctrl.alteraTipo(map.id, col.id)" ng-repeat='col in map.colunas' ng-class="{'playerHere': col.id == $ctrl.player.position.x && col.id_map == $ctrl.player.position.y}">
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

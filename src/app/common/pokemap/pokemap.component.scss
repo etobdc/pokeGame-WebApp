@@ -1,0 +1,34 @@
+.pokeOverflow-auto{
+  overflow: auto;
+}
+.pokeListaBlocos{
+  li{
+    padding: 0.5em;
+    list-style: none;
+    cursor: pointer;
+  }
+  position: fixed;
+  top: 2.5em;
+  background: #222222;
+}
+.pokeMapTable{
+  max-height: 80vh;
+  margin-bottom: 1em;
+  td{
+    cursor: pointer;
+  }
+}
+.pokeMapTable::-webkit-scrollbar {
+  background: #222222;
+  height: 8px;
+  width: 8px;
+} /* configurando scroll */
+.pokeMapTable::-webkit-scrollbar-track {
+  background: transparent;
+}
+.pokeMapTable::-webkit-scrollbar-thumb {
+  background: #FFFF21;
+}
+.tipoSelected{
+  border: 1px solid;
+}
