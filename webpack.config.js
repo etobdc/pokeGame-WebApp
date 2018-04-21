@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 const extractPlugin = new ExtractTextPlugin({
   filename: 'bundle.css'
@@ -77,6 +78,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'index.html'
     }),
-    new CleanWebpackPlugin(['dist'])
+    new CleanWebpackPlugin(['dist']),
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        Popper: ['popper.js', 'default']
+    })
   ]
 };

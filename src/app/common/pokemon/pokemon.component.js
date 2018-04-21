@@ -1,9 +1,9 @@
-import templateUrl from './home.component.html';
-import './home.component.scss';
+import templateUrl from './pokemon.component.html';
+import './pokemon.component.scss';
 
-export const HomeComponent = {
+export const PokemonComponent = {
   templateUrl,
-  controller: class HomeController{
+  controller: class PokemonController{
     constructor($scope){
       'ngInject';
       this.$scope = $scope;
