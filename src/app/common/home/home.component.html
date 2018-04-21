@@ -1,0 +1,9 @@
+<table class="pokeMap">
+  <tbody>
+    <tr ng-repeat="map in $ctrl.colunas">
+      <td ng-repeat='col in map.colunas' ng-class="{'playerHere': col.id == $ctrl.player.position.x && col.id_map == $ctrl.player.position.y}">
+        {{map.id}}.{{col.id}}
+      </td>
+    </tr>
+  </tbody>
+</table>
