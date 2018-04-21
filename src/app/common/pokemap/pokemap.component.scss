@@ -16,6 +16,9 @@
   margin-bottom: 1em;
   td{
     cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 .pokeMapTable::-webkit-scrollbar {

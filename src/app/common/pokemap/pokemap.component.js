@@ -11,6 +11,7 @@ export const PokemapComponent = {
     $onInit(){
       this.totalMapa = 0;
       this.type = 1;
+      this.imageType = ['../../../../media/grass.png','../../../../media/growGrass.png']
     }
 
     refresh(){
