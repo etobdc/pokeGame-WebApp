@@ -11,6 +11,7 @@ export const PokemapComponent = {
     $onInit(){
       this.totalMapa = 0;
       this.type = 0;
+      this.press = false;
       this.imageType = [
         {
           type: 1,
@@ -56,6 +57,17 @@ export const PokemapComponent = {
     }
     alteraTipo(map,col){
       this.mapa[map].colunas[col].type = this.type;
+    }
+    handleMouseover(map,col){
+      if(this.press){
+        this.alteraTipo(map,col);
+      }
+    }
+    handleMouseDown(){
+      this.press = true;
+    }
+    handleMouseUp(){
+      this.press = false;
     }
   }
 };

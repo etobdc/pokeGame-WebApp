@@ -32,8 +32,16 @@
         <table class="pokeMap pokeMapTable d-flex justify-content-center pokeOverflow-auto">
           <tbody>
             <tr ng-repeat="map in $ctrl.mapa">
-              <td style="background-image: url({{$ctrl.imageType[col.type].image}})" ng-click="$ctrl.alteraTipo(map.id, col.id)" ng-repeat='col in map.colunas' ng-class="{'playerHere': col.id == $ctrl.player.position.x && col.id_map == $ctrl.player.position.y}">
-                <span></span>
+              <td
+              style="background-image: url({{$ctrl.imageType[col.type].image}})"
+              ng-click="$ctrl.alteraTipo(map.id, col.id)"
+              ng-repeat='col in map.colunas'
+              ng-class="{'playerHere': col.id == $ctrl.player.position.x && col.id_map == $ctrl.player.position.y}"
+              ng-mousedown="$ctrl.handleMouseDown();$ctrl.alteraTipo(map.id,col.id);"
+              ng-mouseup="$ctrl.handleMouseUp()"
+              ng-mouseover="$ctrl.handleMouseover(map.id, col.id)"
+              >
+
               </td>
             </tr>
           </tbody>
