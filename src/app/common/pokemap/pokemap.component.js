@@ -10,8 +10,29 @@ export const PokemapComponent = {
     }
     $onInit(){
       this.totalMapa = 0;
-      this.type = 1;
-      this.imageType = ['../../../../media/grass.png','../../../../media/growGrass.png']
+      this.type = 0;
+      this.imageType = [
+        {
+          type: 1,
+          name: 'Grow Grass',
+          image: '../../../../media/growGrass.png'
+        },
+        {
+          type: 2,
+          name: 'Grass',
+          image: '../../../../media/grass.png'
+        },
+        {
+          type: 3,
+          name: 'Road 1',
+          image: '../../../../media/road1.png'
+        },
+        {
+          type: 4,
+          name: 'Road 2',
+          image: '../../../../media/road2.png'
+        }
+      ]
     }
 
     refresh(){
