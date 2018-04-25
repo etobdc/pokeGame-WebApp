@@ -6,13 +6,16 @@
       </div>
     </div>
   </div>
-  <div class="container" ng-if="$ctrl.totalMapa">
-    <ul class="row justify-content-center align-items-center pokeListaBlocos">
+  <div class="container pokeLista" ng-if="$ctrl.totalMapa">
+    <ul class="pokeListaBlocos">
       <li>
         <button type="button" class="btn btn-info" ng-click="$ctrl.refresh()">Refresh</button>
       </li>
+      <li>
+        <button type="button" class="btn btn-success" ng-click="$ctrl.saveMap()">Salvar Mapa</button>
+      </li>
       <li ng-class="{'tipoSelected': $ctrl.type == $index}" ng-repeat="item in $ctrl.imageType" ng-click="$ctrl.type = $index">
-        <img ng-src="{{item.image}}" alt="">{{item.name}}
+        <img ng-src="{{item.image}}" alt=""> {{item.name}}
       </li>
     </ul>
   </div>

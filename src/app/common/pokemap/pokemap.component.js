@@ -69,5 +69,8 @@ export const PokemapComponent = {
     handleMouseUp(){
       this.press = false;
     }
+    saveMap(){
+      console.log(this.mapa);
+    }
   }
 };
