@@ -52,3 +52,12 @@
 .tipoSelected{
   border: 1px solid;
 }
+.pokeMapTable__td{
+  position: relative;
+  img{
+    left: 0;
+    max-width: 40px;
+    position: absolute;
+    bottom: 0;
+  }
+}
