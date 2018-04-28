@@ -177,13 +177,8 @@ export const PokemapComponent = {
     }
     alteraTipo(map,col){
       if(!this.imageType[this.type].isObject){
-        if(this.mapa[map].colunas[col].object != ''){
-          if(this.imageType[this.type].canHaveObject){
-            this.mapa[map].colunas[col].type = this.type;
-          }
-        }else{
-          this.mapa[map].colunas[col].type = this.type;
-        }
+        this.mapa[map].colunas[col].type = this.type;
+        this.mapa[map].colunas[col].object = '';
       }else{
         if(this.imageType[this.mapa[map].colunas[col].type].canHaveObject){
           this.mapa[map].colunas[col].object = this.type;
