@@ -30,19 +30,20 @@
             <button type="submit" class="btn btn-success w-100">Setar Tamanho</button>
           </form>
         </div>
-      </div>
+      <!-- </div> -->
       <div class="col-12 pokeOverflow-auto">
         <table class="pokeMap pokeMapTable d-flex justify-content-center pokeOverflow-auto">
           <tbody>
             <tr ng-repeat="map in $ctrl.mapa">
               <td
-              style="background-image: url({{$ctrl.imageType[col.type].image}})"
+              style="background-image: url({{$ctrl.showImage(map.id, col)}})"
               ng-click="$ctrl.alteraTipo(map.id, col.id)"
               ng-repeat='col in map.colunas'
               ng-class="{'pokeMapTable__td': col.object != ''}"
               ng-mousedown="$ctrl.handleMouseDown();$ctrl.alteraTipo(map.id,col.id);"
               ng-mouseup="$ctrl.handleMouseUp()"
               ng-mouseover="$ctrl.handleMouseover(map.id, col.id)"
+              class="pokeMap--before"
               >
               <img draggable="false" ng-if="col.object != ''" src="{{$ctrl.imageType[col.object].image}}">
               </td>
