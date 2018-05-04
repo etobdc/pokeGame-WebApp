@@ -14,8 +14,8 @@
       <li>
         <button type="button" class="btn btn-success" ng-click="$ctrl.saveMap()">Salvar Mapa</button>
       </li>
-      <li ng-class="{'tipoSelected': $ctrl.type == item.type}" ng-repeat="item in $ctrl.imageType" ng-click="$ctrl.type = item.type">
-        <img style="max-height: 48px;" ng-src="{{item.image}}" alt=""> {{item.name}}
+      <li ng-class="{'tipoSelected': $ctrl.type == item.type}" ng-repeat="item in $ctrl.imageType track by $index" ng-click="$ctrl.type = item.type">
+        <img style="max-height: 48px;" ng-src="{{item.image}}" alt="">
       </li>
     </ul>
   </div>
@@ -38,7 +38,7 @@
               <td
               style="background-image: url({{$ctrl.showImage(map.id, col)}})"
               ng-click="$ctrl.alteraTipo(map.id, col.id)"
-              ng-repeat='col in map.colunas'
+              ng-repeat='col in map.colunas track by $index'
               ng-class="{'pokeMapTable__td': col.object != ''}"
               ng-mousedown="$ctrl.handleMouseDown();$ctrl.alteraTipo(map.id,col.id);"
               ng-mouseup="$ctrl.handleMouseUp()"

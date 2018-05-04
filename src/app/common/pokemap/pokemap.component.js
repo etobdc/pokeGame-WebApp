@@ -272,11 +272,6 @@ export const PokemapComponent = {
       return this.verifyPositions(mapa,around);
     }
     verifyPositions(mapa,around){
-      // let full = this.verifyPositionFull(mapa,around);
-      // console.log(full,'FULL');
-      // if(full){
-      //   return full;
-      // }
       let typeSelected = this.mapa[mapa.y].colunas[mapa.x].type;
 
       let lt = this.verifyPositionMap(mapa,around,'lt');
@@ -323,28 +318,6 @@ export const PokemapComponent = {
         return this.imageType[typeSelected].imagePath+'center.png';
       }
 
-    }
-    verifyPositionFull(mapa,around){
-      //all equal
-      let diferent = false;
-      let typeSelected = this.mapa[mapa.y].colunas[mapa.x].type;
-      console.log(typeSelected,'SELECTED');
-      let firstType = this.mapa[around[0].y].colunas[around[0].x].type;
-      around.forEach((item) => {
-        console.log(this.mapa[item.y].colunas[item.x].type,'TYPE');
-        if(this.mapa[item.y].colunas[item.x].type !== firstType && firstType !== typeSelected){
-          console.log(this.mapa[item.y].colunas[item.x].type,'aquiii');
-
-          diferent = true;
-        }
-      })
-      console.log(diferent,'DIFERENT');
-      if(diferent == false){
-        console.log(diferent,'SERIO');
-        return this.imageType[typeSelected].imagePath+'full.png';
-      }else{
-        return false;
-      }
     }
     verifyPositionMap(mapa,around, position){
       let typeSelected = this.mapa[mapa.y].colunas[mapa.x].type;
