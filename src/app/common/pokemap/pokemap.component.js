@@ -317,16 +317,67 @@ export const PokemapComponent = {
       ){
         return this.imageType[typeSelected].imagePath+'center.png';
       }
-
+      //corners
+      if(
+          (
+            t  === true &&
+            r  === true &&
+            d  === true &&
+            l  === true
+          )
+        &&
+          (
+            lt === false ||
+            rt === false ||
+            rd === false ||
+            ld === false
+          )
+      ){
+        return this.imageType[typeSelected].imagePath+'full.png';
+      }
+      //linha
+      if(
+          (
+            lt === true &&
+            t  === true &&
+            rt === true &&
+            rd === true &&
+            d  === true &&
+            ld === true
+          )
+        &&
+          (
+            r  === false ||
+            l  === false
+          )
+      ){
+        if(!r && !l){
+          return this.imageType[typeSelected].imagePath+'top_down.png';
+        }else if(!r){
+          return this.imageType[typeSelected].imagePath+'full_right.png';
+        }else{
+          return this.imageType[typeSelected].imagePath+'full_left.png';
+        }
+      }
     }
     verifyPositionMap(mapa,around, position){
       let typeSelected = this.mapa[mapa.y].colunas[mapa.x].type;
       let diferent = false;
 
-      let teste = around.forEach((item) => {
+      around.forEach((item) => {
         if(position == item.position){
-          // console.log(typeSelected,'typeS');
-          // console.log(this.mapa[item.y].colunas[item.x].type,'type');
+          if(item.y < 0){
+            item.y = 0;
+          }
+          if(item.x < 0){
+            item.x = 0;
+          }
+          if (item.y >= this.totalMapa) {
+            item.y = this.totalMapa - 1;
+          }
+          if (item.x >= this.totalMapa) {
+            item.x = this.totalMapa - 1;
+          }
           if(this.mapa[item.y].colunas[item.x].type != typeSelected){
             diferent = true;
           }
