@@ -288,42 +288,41 @@ export const PokemapComponent = {
       let ld = this.verifyPositionMap(mapa,around,'ld');
       let l  = this.verifyPositionMap(mapa,around,'l');
 
-      // console.log(lt, 'lt');
-      // console.log(t, 't');
-      // console.log(rt,'rt');
-      // console.log(r, 'r');
-      // console.log(rd,'rd');
-      // console.log(d, 'd');
-      // console.log(ld,'ld');
-      // console.log(l, 'l');
+      console.log(lt, 'lt');
+      console.log(t, 't');
+      console.log(rt,'rt');
+      console.log(r, 'r');
+      console.log(rd,'rd');
+      console.log(d, 'd');
+      console.log(ld,'ld');
+      console.log(l, 'l');
+      if(this.imageType[typeSelected].imagePath){
+        if(t){
+          this.mapa[mapa.y].colunas[mapa.x].beforeOne = this.imageType[typeSelected].imagePath+'top.png';
+        }
+        if(d){
+          this.mapa[mapa.y].colunas[mapa.x].afterOne = this.imageType[typeSelected].imagePath+'down.png';
+        }
+        if(l){
+          this.mapa[mapa.y].colunas[mapa.x].beforeTwo = this.imageType[typeSelected].imagePath+'left.png';
+        }
+        if(r){
+          this.mapa[mapa.y].colunas[mapa.x].afterTwo = this.imageType[typeSelected].imagePath+'right.png';
+        }
 
-      if(t){
-        this.mapa[mapa.y].colunas[mapa.x].beforeOne = this.imageType[typeSelected].imagePath+'top.png';
+        if((t && l) && (!d && !r)){
+          this.mapa[mapa.y].colunas[mapa.x].beforeOne = this.imageType[typeSelected].imagePath+'left_top.png';
+        }
+        if((t && r) && (!d && !l)){
+          this.mapa[mapa.y].colunas[mapa.x].beforeOne = this.imageType[typeSelected].imagePath+'right_top.png';
+        }
+        if((d && l) && (!t && !r)){
+          this.mapa[mapa.y].colunas[mapa.x].afterOne = this.imageType[typeSelected].imagePath+'left_down.png';
+        }
+        if((d && r) && (!t && !l)){
+          this.mapa[mapa.y].colunas[mapa.x].afterOne = this.imageType[typeSelected].imagePath+'right_down.png';
+        }
       }
-      if(d){
-        this.mapa[mapa.y].colunas[mapa.x].afterOne = this.imageType[typeSelected].imagePath+'down.png';
-      }
-      if(l){
-        this.mapa[mapa.y].colunas[mapa.x].beforeTwo = this.imageType[typeSelected].imagePath+'left.png';
-      }
-      if(r){
-        this.mapa[mapa.y].colunas[mapa.x].afterTwo = this.imageType[typeSelected].imagePath+'right.png';
-      }
-
-      if((t && l) && (!d && !r)){
-        this.mapa[mapa.y].colunas[mapa.x].beforeOne = this.imageType[typeSelected].imagePath+'left_top.png';
-      }
-      if((t && r) && (!d && !l)){
-        this.mapa[mapa.y].colunas[mapa.x].beforeOne = this.imageType[typeSelected].imagePath+'right_top.png';
-      }
-      if((d && l) && (!t && !r)){
-        this.mapa[mapa.y].colunas[mapa.x].afterOne = this.imageType[typeSelected].imagePath+'left_down.png';
-      }
-      if((d && r) && (!t && !l)){
-        this.mapa[mapa.y].colunas[mapa.x].afterOne = this.imageType[typeSelected].imagePath+'right_down.png';
-      }
-
-
     }
     verifyPositionMap(mapa,around, position){
       let typeSelected = this.mapa[mapa.y].colunas[mapa.x].type;
