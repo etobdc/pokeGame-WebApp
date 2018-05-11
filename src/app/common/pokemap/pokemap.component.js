@@ -310,16 +310,16 @@ export const PokemapComponent = {
         this.mapa[mapa.y].colunas[mapa.x].afterTwo = this.imageType[typeSelected].imagePath+'right.png';
       }
 
-      if(lt){
+      if((t && l) && (!d && !r)){
         this.mapa[mapa.y].colunas[mapa.x].beforeOne = this.imageType[typeSelected].imagePath+'left_top.png';
       }
-      if(rt){
+      if((t && r) && (!d && !l)){
         this.mapa[mapa.y].colunas[mapa.x].beforeOne = this.imageType[typeSelected].imagePath+'right_top.png';
       }
-      if(ld){
+      if((d && l) && (!t && !r)){
         this.mapa[mapa.y].colunas[mapa.x].afterOne = this.imageType[typeSelected].imagePath+'left_down.png';
       }
-      if(rd){
+      if((d && r) && (!t && !l)){
         this.mapa[mapa.y].colunas[mapa.x].afterOne = this.imageType[typeSelected].imagePath+'right_down.png';
       }
 
