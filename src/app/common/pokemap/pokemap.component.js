@@ -185,7 +185,11 @@ export const PokemapComponent = {
             id:a,
             id_map:i,
             type: this.type,
-            object:''
+            object:'',
+            beforeOne: '',
+            afterOne: '',
+            beforeTwo: '',
+            afterTwo: '',
           });
         }
         this.mapa.push({id:i, colunas:linhas});
@@ -203,11 +207,16 @@ export const PokemapComponent = {
     }
     handleMouseover(map,col){
       if(this.press){
-        this.alteraTipo(map,col);
+        this.alteraCampo(map,col);
       }
     }
-    handleMouseDown(){
+    handleMouseDown(mapId,colId){
       this.press = true;
+      this.alteraCampo(mapId,colId);
+    }
+    alteraCampo(mapId,colId){
+      this.alteraTipo(mapId,colId);
+      this.verifyPositions({x:colId, y:mapId});
     }
     handleMouseUp(){
       this.press = false;
@@ -260,19 +269,15 @@ export const PokemapComponent = {
       ]
       return around;
     }
-    showImage(mapId, col){
-      if(this.imageType[col.type].imagePath == ''){
-        return this.imageType[col.type].image;
-      }
-      let mapa = {
-        x:col.id,
-        y:mapId
-      }
+    verifyPositions(mapa){
       let around = this.createAround(mapa);
-      return this.verifyPositions(mapa,around);
-    }
-    verifyPositions(mapa,around){
+
       let typeSelected = this.mapa[mapa.y].colunas[mapa.x].type;
+
+      this.mapa[mapa.y].colunas[mapa.x].beforeOne = '';
+      this.mapa[mapa.y].colunas[mapa.x].afterOne = '';
+      this.mapa[mapa.y].colunas[mapa.x].beforeTwo = '';
+      this.mapa[mapa.y].colunas[mapa.x].afterTwo = '';
 
       let lt = this.verifyPositionMap(mapa,around,'lt');
       let t  = this.verifyPositionMap(mapa,around,'t');
@@ -282,83 +287,43 @@ export const PokemapComponent = {
       let d  = this.verifyPositionMap(mapa,around,'d');
       let ld = this.verifyPositionMap(mapa,around,'ld');
       let l  = this.verifyPositionMap(mapa,around,'l');
-      console.log(lt, 'lt');
-      console.log(t, 't');
-      console.log(rt,'rt');
-      console.log(r, 'r');
-      console.log(rd,'rd');
-      console.log(d, 'd');
-      console.log(ld,'ld');
-      console.log(l, 'l');
 
-      //all diferent
-      if(
-        lt === true &&
-        t  === true &&
-        rt === true &&
-        r  === true &&
-        rd === true &&
-        d  === true &&
-        ld === true &&
-        l  === true
-      ){
-        return this.imageType[typeSelected].imagePath+'full.png';
+      // console.log(lt, 'lt');
+      // console.log(t, 't');
+      // console.log(rt,'rt');
+      // console.log(r, 'r');
+      // console.log(rd,'rd');
+      // console.log(d, 'd');
+      // console.log(ld,'ld');
+      // console.log(l, 'l');
+
+      if(t){
+        this.mapa[mapa.y].colunas[mapa.x].beforeOne = this.imageType[typeSelected].imagePath+'top.png';
       }
-      //all equal
-      if(
-        lt === false &&
-        t  === false &&
-        rt === false &&
-        r  === false &&
-        rd === false &&
-        d  === false &&
-        ld === false &&
-        l  === false
-      ){
-        return this.imageType[typeSelected].imagePath+'center.png';
+      if(d){
+        this.mapa[mapa.y].colunas[mapa.x].afterOne = this.imageType[typeSelected].imagePath+'down.png';
       }
-      //corners
-      if(
-          (
-            t  === true &&
-            r  === true &&
-            d  === true &&
-            l  === true
-          )
-        &&
-          (
-            lt === false ||
-            rt === false ||
-            rd === false ||
-            ld === false
-          )
-      ){
-        return this.imageType[typeSelected].imagePath+'full.png';
+      if(l){
+        this.mapa[mapa.y].colunas[mapa.x].beforeTwo = this.imageType[typeSelected].imagePath+'left.png';
       }
-      //linha
-      if(
-          (
-            lt === true &&
-            t  === true &&
-            rt === true &&
-            rd === true &&
-            d  === true &&
-            ld === true
-          )
-        &&
-          (
-            r  === false ||
-            l  === false
-          )
-      ){
-        if(!r && !l){
-          return this.imageType[typeSelected].imagePath+'top_down.png';
-        }else if(!r){
-          return this.imageType[typeSelected].imagePath+'full_right.png';
-        }else{
-          return this.imageType[typeSelected].imagePath+'full_left.png';
-        }
+      if(r){
+        this.mapa[mapa.y].colunas[mapa.x].afterTwo = this.imageType[typeSelected].imagePath+'right.png';
       }
+
+      if(lt){
+        this.mapa[mapa.y].colunas[mapa.x].beforeOne = this.imageType[typeSelected].imagePath+'left_top.png';
+      }
+      if(rt){
+        this.mapa[mapa.y].colunas[mapa.x].beforeOne = this.imageType[typeSelected].imagePath+'right_top.png';
+      }
+      if(ld){
+        this.mapa[mapa.y].colunas[mapa.x].afterOne = this.imageType[typeSelected].imagePath+'left_down.png';
+      }
+      if(rd){
+        this.mapa[mapa.y].colunas[mapa.x].afterOne = this.imageType[typeSelected].imagePath+'right_down.png';
+      }
+
+
     }
     verifyPositionMap(mapa,around, position){
       let typeSelected = this.mapa[mapa.y].colunas[mapa.x].type;
@@ -384,6 +349,19 @@ export const PokemapComponent = {
         }
       })
       return diferent;
+    }
+    handleBeforeOne(mapId,colId){
+    //  console.log(mapId,colId);
+      return this.mapa[mapId].colunas[colId].beforeOne;
+    }
+    handleAfterOne(mapId,colId){
+      return this.mapa[mapId].colunas[colId].afterOne
+    }
+    handleBeforeTwo(mapId,colId){
+      return this.mapa[mapId].colunas[colId].beforeTwo
+    }
+    handleAfterTwo(mapId,colId){
+      return this.mapa[mapId].colunas[colId].afterTwo
     }
   }
 };

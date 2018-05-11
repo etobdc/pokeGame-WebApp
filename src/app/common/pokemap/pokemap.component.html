@@ -39,14 +39,18 @@
               style="background-image: url({{$ctrl.imageType[col.type].image}})"
               ng-repeat='col in map.colunas track by $index'
               ng-class="{'pokeMapTable__td': col.object != ''}"
-              ng-mousedown="$ctrl.handleMouseDown();$ctrl.alteraTipo(map.id,col.id);"
+              ng-mousedown="$ctrl.handleMouseDown(map.id,col.id);"
               ng-mouseup="$ctrl.handleMouseUp()"
               ng-mouseover="$ctrl.handleMouseover(map.id, col.id)"
               class="pokeMap--before"
               >
                 <img draggable="false" ng-if="col.object != ''" src="{{$ctrl.imageType[col.object].image}}">
-                <span></span>
-                <span></span>
+
+                <img draggable="false" class="pokeMapTable__td__img __top" ng-if="col.beforeOne != ''" src="{{$ctrl.handleBeforeOne(map.id, col.id)}}">
+                <img draggable="false" class="pokeMapTable__td__img __down" ng-if="col.afterOne != ''" src="{{$ctrl.handleAfterOne(map.id, col.id)}}">
+                <img draggable="false" class="pokeMapTable__td__img __left" ng-if="col.beforeTwo != ''" src="{{$ctrl.handleBeforeTwo(map.id, col.id)}}">
+                <img draggable="false" class="pokeMapTable__td__img __right" ng-if="col.afterTwo != ''" src="{{$ctrl.handleAfterTwo(map.id, col.id)}}">
+
               </td>
             </tr>
           </tbody>
