@@ -46,10 +46,10 @@
               >
                 <img draggable="false" ng-if="col.object != ''" src="{{$ctrl.imageType[col.object].image}}">
 
-                <img draggable="false" class="pokeMapTable__td__img __top" ng-if="col.beforeOne != ''" src="{{$ctrl.handleBeforeOne(map.id, col.id)}}">
-                <img draggable="false" class="pokeMapTable__td__img __down" ng-if="col.afterOne != ''" src="{{$ctrl.handleAfterOne(map.id, col.id)}}">
-                <img draggable="false" class="pokeMapTable__td__img __left" ng-if="col.beforeTwo != ''" src="{{$ctrl.handleBeforeTwo(map.id, col.id)}}">
-                <img draggable="false" class="pokeMapTable__td__img __right" ng-if="col.afterTwo != ''" src="{{$ctrl.handleAfterTwo(map.id, col.id)}}">
+                <img draggable="false" class="pokeMapTable__td__img __top" ng-if="col.beforeOne != ''" src="{{col.beforeOne}}">
+                <img draggable="false" class="pokeMapTable__td__img __down" ng-if="col.afterOne != ''" src="{{col.afterOne}}">
+                <img draggable="false" class="pokeMapTable__td__img __left" ng-if="col.beforeTwo != ''" src="{{col.beforeTwo}}">
+                <img draggable="false" class="pokeMapTable__td__img __right" ng-if="col.afterTwo != ''" src="{{col.afterTwo}}">
 
               </td>
             </tr>

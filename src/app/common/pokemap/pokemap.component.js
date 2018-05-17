@@ -349,18 +349,5 @@ export const PokemapComponent = {
       })
       return diferent;
     }
-    handleBeforeOne(mapId,colId){
-    //  console.log(mapId,colId);
-      return this.mapa[mapId].colunas[colId].beforeOne;
-    }
-    handleAfterOne(mapId,colId){
-      return this.mapa[mapId].colunas[colId].afterOne
-    }
-    handleBeforeTwo(mapId,colId){
-      return this.mapa[mapId].colunas[colId].beforeTwo
-    }
-    handleAfterTwo(mapId,colId){
-      return this.mapa[mapId].colunas[colId].afterTwo
-    }
   }
 };
