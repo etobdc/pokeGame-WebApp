@@ -4,10 +4,11 @@ import './pokemap.component.scss';
 export const PokemapComponent = {
   templateUrl,
   controller: class PokemapController{
-    constructor($scope, urlBase){
+    constructor($scope, urlBase, $http){
       'ngInject';
       this.$scope = $scope;
       this.urlBase = urlBase;
+      this.$http = $http;
     }
     $onInit(){
       this.totalMapa = 0;
@@ -222,7 +223,7 @@ export const PokemapComponent = {
       this.press = false;
     }
     saveMap(){
-      console.log(this.mapa);
+      console.log(JSON.stringify(this.mapa));
     }
     createAround(mapa){
       let around = [

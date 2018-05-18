@@ -1,9 +1,37 @@
-<table class="pokeMap">
+<!-- <table class="pokeMap">
   <tbody>
-    <tr ng-repeat="map in $ctrl.colunas">
+    <tr ng-repeat="map in $ctrl.mapa.map">
       <td ng-repeat='col in map.colunas' ng-class="{'playerHere': col.id == $ctrl.player.position.x && col.id_map == $ctrl.player.position.y}">
         {{map.id}}.{{col.id}}
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 pokeOverflow-auto">
+        <table class="pokeMap pokeMapTable d-flex justify-content-center pokeOverflow-auto">
+          <tbody>
+            <tr ng-repeat="map in $ctrl.mapa.map">
+              <td
+              style="background-image: url({{$ctrl.imageType[col.type].image}})"
+              ng-repeat='col in map.colunas track by $index'
+              ng-class="{'pokeMapTable__td': col.object != '','playerHere': col.id == $ctrl.player.position.x && col.id_map == $ctrl.player.position.y}"
+              class="pokeMap--before"
+              >
+                <img draggable="false" ng-if="col.object != ''" src="{{$ctrl.imageType[col.object].image}}">
+
+                <img draggable="false" class="pokeMapTable__td__img __top" ng-if="col.beforeOne != ''" src="{{col.beforeOne}}">
+                <img draggable="false" class="pokeMapTable__td__img __down" ng-if="col.afterOne != ''" src="{{col.afterOne}}">
+                <img draggable="false" class="pokeMapTable__td__img __left" ng-if="col.beforeTwo != ''" src="{{col.beforeTwo}}">
+                <img draggable="false" class="pokeMapTable__td__img __right" ng-if="col.afterTwo != ''" src="{{col.afterTwo}}">
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
