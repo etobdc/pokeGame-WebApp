@@ -4,11 +4,12 @@ import './home.component.scss';
 export const HomeComponent = {
   templateUrl,
   controller: class HomeController{
-    constructor($scope, $http, urlBase){
+    constructor($scope, $http, urlBase, $timeout){
       'ngInject';
       this.$scope = $scope;
       this.$http = $http;
       this.urlBase = urlBase;
+      this.$timeout = $timeout;
     }
     godDamn(){
       alert('God Damn');
@@ -22,6 +23,7 @@ export const HomeComponent = {
           y:0
         }
       }
+      this.inMovement = false;
       this.arrows();
       this.imageType = [
         {
@@ -216,35 +218,42 @@ export const HomeComponent = {
           default:
             return; // Quit when this doesn't handle the key event.
         }
-        console.log(this.player.position);
+
+        // console.log(this.player.position);
         // Cancel the default action to avoid it being handled twice
         event.preventDefault();
       }, true);
     }
 
     playerMove(direction){
-      switch (direction) {
-        case 'down':
-        this._playerDown();
-        break;
-        case 'up':
-        this._playerUp();
-        break;
-        case 'left':
-        this._playerLeft();
-        break;
-        case 'right':
-        this._playerRight();
-        break;
-        default:
-        console.log('No move');
-        break;
+      if (!this.inMovement) {
+        this.inMovement = true;
+        this.$timeout(() => {
+          switch (direction) {
+            case 'down':
+            this._playerDown();
+            break;
+            case 'up':
+            this._playerUp();
+            break;
+            case 'left':
+            this._playerLeft();
+            break;
+            case 'right':
+            this._playerRight();
+            break;
+            default:
+            console.log('No move');
+            break;
+          }
+          this.inMovement = false;
+        }, 100);
+        this.$scope.$apply();
       }
-      this.$scope.$apply();
     }
 
     _playerDown(){
-      if(this.player.position.y < this.mapa.map.length){
+      if(this.player.position.y < (this.mapa.map.length - 1)){
         this.player.position.y = this.player.position.y+1;
       }
     }
@@ -259,7 +268,7 @@ export const HomeComponent = {
       }
     }
     _playerRight(){
-      if(this.player.position.x < this.mapa.map.length){
+      if(this.player.position.x < (this.mapa.map.length - 1)){
         this.player.position.x = this.player.position.x+1;
       }
     }

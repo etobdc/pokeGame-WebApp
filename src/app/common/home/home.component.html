@@ -1,18 +1,9 @@
-<!-- <table class="pokeMap">
-  <tbody>
-    <tr ng-repeat="map in $ctrl.mapa.map">
-      <td ng-repeat='col in map.colunas' ng-class="{'playerHere': col.id == $ctrl.player.position.x && col.id_map == $ctrl.player.position.y}">
-        {{map.id}}.{{col.id}}
-      </td>
-    </tr>
-  </tbody>
-</table> -->
 <section>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row h-100-vh justify-content-center align-items-center">
       <div class="col-12 pokeOverflow-auto">
-        <table class="pokeMap pokeMapTable d-flex justify-content-center pokeOverflow-auto">
-          <tbody>
+        <table class="pokeMap pokeMapTable pokeMapTable__home pokeMap--noBorder d-flex justify-content-center pokeOverflow-auto">
+          <tbody class="player">
             <tr ng-repeat="map in $ctrl.mapa.map">
               <td
               style="background-image: url({{$ctrl.imageType[col.type].image}})"
@@ -35,3 +26,9 @@
     </div>
   </div>
 </section>
+<style media="screen">
+  .player:before{
+    left: {{($ctrl.player.position.x)*40}}px;
+    top: {{($ctrl.player.position.y)*40}}px;
+  }
+</style>

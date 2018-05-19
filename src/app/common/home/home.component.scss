@@ -5,60 +5,7 @@ body *{
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
-  user-select: none;          /* Likely future */ 
-}
-.home{
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-
-  &__title{
-    font-size: 82px;
-    font-weight: 400;
-    margin: 5px 0;
-    text-align: center;
-  }
-
-  &__title-legend{
-    font-size: .8rem;
-    margin-bottom: 30px;
-    margin-top: 5px;
-  }
-
-  &__nav{
-    ul{
-      list-style: none;
-      padding: 0;
-    }
-    li{
-      display: inline-block;
-      margin: 7px;
-    }
-    a{
-      color: #FFFF21;
-      text-decoration: none;
-    }
-  }
-
-  &__easter-egg{
-    color: #FFFF21;
-    left: 50%;
-    opacity: 0;
-    position: absolute;
-    transition: .1s all ease;
-    text-align: center;
-    text-decoration: none;
-    top: 85px;
-    transform: translatex(-50%);
-    &:hover{
-      opacity: 1;
-    }
-  }
-}
-home{
-  position: fixed;
+  user-select: none;          /* Likely future */
 }
 .pokeMap{
   overflow: hidden;
@@ -70,4 +17,32 @@ home{
 }
 .playerHere{
   background: green;
+  z-index: 1000;
+}
+.h-100-vh{
+  height: 100vh;
+}
+.pokeMapTable__home{
+  max-height: 100vh!important;
+  margin: 0!important;
+}
+.player{
+  position: relative;
+  display: block;
+  transition: 0.2s ease all;
+  &:before{
+    content: '';
+    position: absolute;
+    background: red;
+    z-index: 5000;
+    height: 40px;
+    width: 40px;
+    transition: 0.2s ease all;
+  }
+}
+.pokeMap--noBorder{
+  border: none;
+  td{
+    border: none;
+  }
 }
