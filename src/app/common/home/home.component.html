@@ -6,12 +6,12 @@
           <tbody class="player">
             <tr ng-repeat="map in $ctrl.mapa.map">
               <td
-              style="background-image: url({{$ctrl.imageType[col.type].image}})"
+              style="background-image: url({{$ctrl.Image.imageType[col.type].image}})"
               ng-repeat='col in map.colunas track by $index'
               ng-class="{'pokeMapTable__td': col.object != '','playerHere': col.id == $ctrl.player.position.x && col.id_map == $ctrl.player.position.y}"
               class="pokeMap--before"
               >
-                <img draggable="false" ng-if="col.object != ''" src="{{$ctrl.imageType[col.object].image}}">
+                <img draggable="false" ng-if="col.object != ''" src="{{$ctrl.Image.imageType[col.object].image}}">
 
                 <img draggable="false" class="pokeMapTable__td__img __top" ng-if="col.beforeOne != ''" src="{{col.beforeOne}}">
                 <img draggable="false" class="pokeMapTable__td__img __down" ng-if="col.afterOne != ''" src="{{col.afterOne}}">

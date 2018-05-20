@@ -14,7 +14,7 @@
       <li>
         <button type="button" class="btn btn-success" ng-click="$ctrl.saveMap()">Salvar Mapa</button>
       </li>
-      <li ng-class="{'tipoSelected': $ctrl.type == item.type}" ng-repeat="item in $ctrl.imageType track by $index" ng-click="$ctrl.type = item.type">
+      <li ng-class="{'tipoSelected': $ctrl.type == item.type}" ng-repeat="item in $ctrl.Image.imageType track by $index" ng-click="$ctrl.type = item.type">
         <img draggable="false" style="max-height: 48px;" ng-src="{{item.image}}" alt="">
       </li>
     </ul>
@@ -36,7 +36,7 @@
           <tbody>
             <tr ng-repeat="map in $ctrl.mapa">
               <td
-              style="background-image: url({{$ctrl.imageType[col.type].image}})"
+              style="background-image: url({{$ctrl.Image.imageType[col.type].image}})"
               ng-repeat='col in map.colunas track by $index'
               ng-class="{'pokeMapTable__td': col.object != ''}"
               ng-mousedown="$ctrl.handleMouseDown(map.id,col.id);"
@@ -44,7 +44,7 @@
               ng-mouseover="$ctrl.handleMouseover(map.id, col.id)"
               class="pokeMap--before"
               >
-                <img draggable="false" ng-if="col.object != ''" src="{{$ctrl.imageType[col.object].image}}">
+                <img draggable="false" ng-if="col.object != ''" src="{{$ctrl.Image.imageType[col.object].image}}">
 
                 <img draggable="false" class="pokeMapTable__td__img __top" ng-if="col.beforeOne != ''" src="{{col.beforeOne}}">
                 <img draggable="false" class="pokeMapTable__td__img __down" ng-if="col.afterOne != ''" src="{{col.afterOne}}">
