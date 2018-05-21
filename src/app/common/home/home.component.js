@@ -4,18 +4,22 @@ import './home.component.scss';
 export const HomeComponent = {
   templateUrl,
   controller: class HomeController{
-    constructor($scope, $http, urlBase, $timeout, Image){
+    constructor($scope, $http, urlBase, $timeout, Image, $interval){
       'ngInject';
       this.$scope = $scope;
       this.$http = $http;
       this.urlBase = urlBase;
       this.$timeout = $timeout;
       this.Image = Image;
+      this.$interval = $interval;
     }
     $onInit(){
       this.pokeMap();
+      this.arrowKey = '';
+      this.movePlayer;
       this.player = {
         name: 'Player 1',
+        image: this.urlBase+'player/male/front.png',
         position:{
           x:0,
           y:0
@@ -31,42 +35,77 @@ export const HomeComponent = {
         if(result.data){
           this.mapa = result.data;
           this.mapa.map = JSON.parse(this.mapa.map);
-            console.log(this.mapa);
+          // console.log(this.mapa);
         }
       })
     }
 
     arrows(){
+      window.addEventListener("keyup", (event) => {
+        this.$interval.cancel(this.movePlayer);
+        this.movePlayer = undefined;
+        this.arrowKey = '';
+        switch (event.key) {
+          case "ArrowDown":
+            this.player.image = this.urlBase+'player/male/front.png';
+          break;
+          case "ArrowUp":
+            this.player.image = this.urlBase+'player/male/back.png';
+          break;
+          case "ArrowLeft":
+            this.player.image = this.urlBase+'player/male/left.png';
+          break;
+          case "ArrowRight":
+            this.player.image = this.urlBase+'player/male/right.png';
+          break;
+          default:
+          return; // Quit when this doesn't handle the key event.
+        }
+        this.$scope.$apply();
+      }, true);
       window.addEventListener("keydown", (event) => {
         if (event.defaultPrevented) {
           return; // Do nothing if the event was already processed
         }
-
-        switch (event.key) {
-          case "ArrowDown":
-            this.playerMove('down');
+        if(this.arrowKey != event.key){
+          this.arrowKey = event.key;
+          switch (event.key) {
+            case "ArrowDown":
+              this.player.image = this.urlBase+'player/male/front.gif';
+              this.movePlayer = this.$interval(() => {
+                this.playerMove('down');
+              }, 100);
             break;
-          case "ArrowUp":
-            this.playerMove('up');
+            case "ArrowUp":
+              this.player.image = this.urlBase+'player/male/back.png';
+              this.movePlayer = this.$interval(() => {
+                this.playerMove('up');
+              }, 100);
             break;
-          case "ArrowLeft":
-            this.playerMove('left');
+            case "ArrowLeft":
+              this.player.image = this.urlBase+'player/male/left.png';
+              this.movePlayer = this.$interval(() => {
+                this.playerMove('left');
+              }, 100);
             break;
-          case "ArrowRight":
-            this.playerMove('right');
+            case "ArrowRight":
+              this.player.image = this.urlBase+'player/male/right.png';
+              this.movePlayer = this.$interval(() => {
+                this.playerMove('right');
+              }, 100);
             break;
-          case "Enter":
-          console.log("enter")
+            case "Enter":
+            console.log("enter")
             break;
-          case "Escape":
-          console.log("esc")
+            case "Escape":
+            console.log("esc")
             break;
-          default:
+            default:
             return; // Quit when this doesn't handle the key event.
+          }
+          // console.log(this.player.position);
+          // Cancel the default action to avoid it being handled twice
         }
-
-        // console.log(this.player.position);
-        // Cancel the default action to avoid it being handled twice
         event.preventDefault();
       }, true);
     }
@@ -94,7 +133,6 @@ export const HomeComponent = {
           }
           this.inMovement = false;
         }, 100);
-        this.$scope.$apply();
       }
     }
 
