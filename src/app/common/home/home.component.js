@@ -77,19 +77,19 @@ export const HomeComponent = {
               }, 100);
             break;
             case "ArrowUp":
-              this.player.image = this.urlBase+'player/male/back.png';
+              this.player.image = this.urlBase+'player/male/back.gif';
               this.movePlayer = this.$interval(() => {
                 this.playerMove('up');
               }, 100);
             break;
             case "ArrowLeft":
-              this.player.image = this.urlBase+'player/male/left.png';
+              this.player.image = this.urlBase+'player/male/left.gif';
               this.movePlayer = this.$interval(() => {
                 this.playerMove('left');
               }, 100);
             break;
             case "ArrowRight":
-              this.player.image = this.urlBase+'player/male/right.png';
+              this.player.image = this.urlBase+'player/male/right.gif';
               this.movePlayer = this.$interval(() => {
                 this.playerMove('right');
               }, 100);
