@@ -12,6 +12,7 @@ export const HomeComponent = {
       this.$timeout = $timeout;
       this.Image = Image;
       this.$interval = $interval;
+      this.position = 5;
     }
     $onInit(){
       this.pokeMap();
@@ -21,8 +22,8 @@ export const HomeComponent = {
         name: 'Player 1',
         image: this.urlBase+'player/male/front.png',
         position:{
-          x:0,
-          y:0
+          x:this.position,
+          y:this.position
         }
       }
       this.inMovement = false;
@@ -30,7 +31,7 @@ export const HomeComponent = {
     }
 
     pokeMap(){
-      this.$http.get('http://localhost:8000/map/1')
+      this.$http.get('http://localhost:8000/map/2')
       .then((result) => {
         if(result.data){
           this.mapa = result.data;
@@ -74,25 +75,25 @@ export const HomeComponent = {
               this.player.image = this.urlBase+'player/male/front.gif';
               this.movePlayer = this.$interval(() => {
                 this.playerMove('down');
-              }, 100);
+              }, 75);
             break;
             case "ArrowUp":
               this.player.image = this.urlBase+'player/male/back.gif';
               this.movePlayer = this.$interval(() => {
                 this.playerMove('up');
-              }, 100);
+              }, 75);
             break;
             case "ArrowLeft":
               this.player.image = this.urlBase+'player/male/left.gif';
               this.movePlayer = this.$interval(() => {
                 this.playerMove('left');
-              }, 100);
+              }, 75);
             break;
             case "ArrowRight":
               this.player.image = this.urlBase+'player/male/right.gif';
               this.movePlayer = this.$interval(() => {
                 this.playerMove('right');
-              }, 100);
+              }, 75);
             break;
             case "Enter":
             console.log("enter")

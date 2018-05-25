@@ -15,6 +15,13 @@ body *{
     font-size: 12px;
   }
 }
+.pokeMap--noOverflow{
+  overflow: initial;
+
+}
+.pokeMap--padding{
+  padding-top: 15%;
+}
 .playerHere{
   background: green;
   z-index: 1000;
