@@ -36,7 +36,7 @@ export const HomeComponent = {
         if(result.data){
           this.mapa = result.data;
           this.mapa.map = JSON.parse(this.mapa.map);
-          // console.log(this.mapa);
+          console.log(this.mapa);
         }
       })
     }
@@ -139,23 +139,34 @@ export const HomeComponent = {
 
     _playerDown(){
       if(this.player.position.y < (this.mapa.map.length - 1)){
-        this.player.position.y = this.player.position.y+1;
+        if(this._canImoveMe(this.player.position.x,(this.player.position.y+1))){
+          this.player.position.y = this.player.position.y+1;
+        }
       }
     }
     _playerUp(){
       if((this.player.position.y - 1) >= 0){
-        this.player.position.y = this.player.position.y-1;
+        if(this._canImoveMe(this.player.position.x,(this.player.position.y-1))){
+          this.player.position.y = this.player.position.y-1;
+        }
       }
     }
     _playerLeft(){
       if((this.player.position.x - 1) >= 0){
-        this.player.position.x = this.player.position.x-1;
+        if(this._canImoveMe((this.player.position.x-1),this.player.position.y)){
+          this.player.position.x = this.player.position.x-1;
+        }
       }
     }
     _playerRight(){
       if(this.player.position.x < (this.mapa.map.length - 1)){
-        this.player.position.x = this.player.position.x+1;
+        if(this._canImoveMe((this.player.position.x+1),this.player.position.y)){
+          this.player.position.x = this.player.position.x+1;
+        }
       }
+    }
+    _canImoveMe(x,y){
+      return (this.Image.imageType[this.mapa.map[y].colunas[x].type].canPass && !(this.mapa.map[y].colunas[x].object != ''));
     }
   }
 };
