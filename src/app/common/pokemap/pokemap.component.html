@@ -12,7 +12,7 @@
         <button type="button" class="btn btn-info" ng-click="$ctrl.refresh()">Refresh</button>
       </li>
       <li>
-        <button type="button" class="btn btn-success" ng-click="$ctrl.saveMap()">Salvar Mapa</button>
+        <button ng-disable="$ctrl.saving" type="button" class="btn btn-success" ng-click="$ctrl.saveMap()">Salvar Mapa</button>
       </li>
       <li ng-class="{'tipoSelected': $ctrl.type == item.type}" ng-repeat="item in $ctrl.Image.imageType track by $index" ng-click="$ctrl.type = item.type">
         <img draggable="false" style="max-height: 48px;" ng-src="{{item.image}}" alt="">

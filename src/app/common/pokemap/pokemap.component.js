@@ -15,6 +15,7 @@ export const PokemapComponent = {
       this.totalMapa = 0;
       this.type = 0;
       this.press = false;
+      this.saving = false;
     }
 
     refresh(){
@@ -72,7 +73,15 @@ export const PokemapComponent = {
       this.press = false;
     }
     saveMap(){
-      console.log(JSON.stringify(this.mapa));
+      this.saving = true;
+      var mapaFinal = {
+        name: 'Test_'+new Date().getTime(),
+        map: JSON.stringify(this.mapa)
+      }
+      this.$http.post('http://localhost:8000/map', mapaFinal)
+      .then((result) => {
+        this.saving = false;
+      })
     }
     createAround(mapa){
       let around = [
