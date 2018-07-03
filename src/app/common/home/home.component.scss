@@ -7,6 +7,10 @@ body *{
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;          /* Likely future */
 }
+.fixedSection{
+  position: fixed;
+  width: 100%;
+}
 .pokeMap{
   overflow: hidden;
   td{

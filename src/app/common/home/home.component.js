@@ -13,7 +13,7 @@ export const HomeComponent = {
       this.Image = Image;
       this.Sounds = Sounds;
       this.$interval = $interval;
-      this.position = 0;
+      this.position = 3;
     }
     $onInit(){
       this.Sounds.startSound(1);
