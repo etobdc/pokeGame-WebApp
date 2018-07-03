@@ -7,6 +7,7 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 
 import { ImageService } from './configs/image.service';
+import { SoundsService } from './configs/sounds.service';
 
 import './app.component.scss';
 import 'bootstrap';
@@ -24,4 +25,5 @@ export const AppModule = angular
     $urlRouterProvider.otherwise('/');
   })
   .service('Image',ImageService)
-  .name;
+  .service('Sounds',SoundsService)
+  .name;SoundsService

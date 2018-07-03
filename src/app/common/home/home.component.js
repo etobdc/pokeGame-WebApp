@@ -4,17 +4,19 @@ import './home.component.scss';
 export const HomeComponent = {
   templateUrl,
   controller: class HomeController{
-    constructor($scope, $http, urlBase, $timeout, Image, $interval){
+    constructor($scope, $http, urlBase, $timeout, Image, Sounds, $interval){
       'ngInject';
       this.$scope = $scope;
       this.$http = $http;
       this.urlBase = urlBase;
       this.$timeout = $timeout;
       this.Image = Image;
+      this.Sounds = Sounds;
       this.$interval = $interval;
-      this.position = 5;
+      this.position = 0;
     }
     $onInit(){
+      this.Sounds.startSound(1);
       this.pokeMap();
       this.arrowKey = '';
       this.movePlayer;
