@@ -35,31 +35,32 @@ export const HomeComponent = {
           name: 'Bulbasaur',
           life: 500,
           image: this.urlBase+'pokemon'+'/1.gif',
+          imageBack: this.urlBase+'pokemon'+'/1_b.png',
           type: 'grass',
           attacks: [
             {
               name: 'Tackle',
               power: 50,
-              type_1: 'watter',
-              type_2: 'watter'
+              type_1: 'normal',
+              type_2: null
             },
             {
               name: 'Vine Whip',
               power: 45,
-              type_1: 'watter',
-              type_2: 'watter'
+              type_1: 'grass',
+              type_2: null
             },
             {
               name: 'Take Down',
               power: 90,
-              type_1: 'watter',
-              type_2: 'watter'
+              type_1: 'normal',
+              type_2: null
             },
             {
               name: 'Razor Leaf',
               power: 55,
-              type_1: 'watter',
-              type_2: 'watter'
+              type_1: 'grass',
+              type_2: null
             }
           ]
         },
@@ -67,31 +68,32 @@ export const HomeComponent = {
           name: 'Charmander',
           life: 500,
           image: this.urlBase+'pokemon'+'/4.gif',
+          imageBack: this.urlBase+'pokemon'+'/4_b.png',
           type: 'fire',
           attacks: [
             {
               name: 'Scratch',
               power: 40,
-              type_1: 'watter',
-              type_2: 'watter'
+              type_1: 'normal',
+              type_2: null
             },
             {
               name: 'Ember',
               power: 40,
-              type_1: 'watter',
-              type_2: 'watter'
+              type_1: 'fire',
+              type_2: null
             },
             {
               name: 'Fire Fang',
               power: 65,
-              type_1: 'watter',
-              type_2: 'watter'
+              type_1: 'fire',
+              type_2: null
             },
             {
               name: 'Flame Burst',
               power: 90,
-              type_1: 'watter',
-              type_2: 'watter'
+              type_1: 'fire',
+              type_2: null
             }
           ]
         },
@@ -99,6 +101,7 @@ export const HomeComponent = {
           name: 'Squirtle',
           life: 500,
           image: this.urlBase+'pokemon'+'/7.gif',
+          imageBack: this.urlBase+'pokemon'+'/7_b.png',
           type: 'watter',
           attacks: [
             {
@@ -128,6 +131,7 @@ export const HomeComponent = {
           ]
         }
       ]
+      this.oponent = {};
     }
 
     pokeMap(){
@@ -290,13 +294,17 @@ export const HomeComponent = {
     }
     _startBattle(){
       this.Sounds.startSound(14);
-      window.removeEventListener("keydown", {}, false);
       this._cancelMove();
       this.inMovement = true;
+      let randPokemonOponent = Math.floor((Math.random() * 4) + 0);
+      let randPokemonPlayer = Math.floor((Math.random() * 4) + 0);
+      this.player.pokemon = this.pokemon[randPokemonPlayer];
+      this.oponent.pokemon = this.pokemon[randPokemonOponent];
       $('#battleModal').modal('show');
-      let randPokemon = Math.floor((Math.random() * 4) + 0);
-      console.log(this.pokemon[randPokemon]);
-
+    }
+    backToGame(){
+      this.Sounds.startSound(1);
+      this.inMovement = false;
     }
   }
 };
