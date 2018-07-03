@@ -56,3 +56,16 @@ body *{
     border: none;
   }
 }
+#battleModal{
+  .modal-content{
+    border: none;
+    border-radius: 0px;
+  }
+  .modal-header{
+    border: none;
+    border-radius: 0px;
+  }
+  .modal-footer{
+    border: none;
+  }
+}

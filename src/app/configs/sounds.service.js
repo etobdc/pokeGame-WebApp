@@ -1,6 +1,7 @@
 export class SoundsService {
   constructor(urlBase){
     'ngInject';
+    this.audio = new Audio();
     this.urlBaseSounds = urlBase+'sounds/';
     this.sounds = [
       {
@@ -66,11 +67,13 @@ export class SoundsService {
     ]
   }
   startSound (musicIndex){
-    let audio = new Audio(this.sounds[musicIndex].path);
-    audio.addEventListener('ended', function() {
+    this.audio.src = this.sounds[musicIndex].path;
+    this.audio.pause();
+    this.audio.currentTime = 0;
+    this.audio.addEventListener('ended', function() {
         this.currentTime = 0;
         this.play();
     }, false);
-    audio.play();
+    this.audio.play();
   }
 }
