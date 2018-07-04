@@ -54,7 +54,7 @@
             </div>
             <div class="col-6">
               <div class="row justify-content-center">
-                <img class="pokemon__battle__arena__pokemon" src="{{$ctrl.oponent.pokemon.image}}" alt="">
+                <img ng-if="$ctrl.oponent.pokemon.life > 0" class="pokemon__battle__arena__pokemon" src="{{$ctrl.oponent.pokemon.image}}" alt="">
                 <img class="pokemon__battle__arena__ground w-100" src="{{$ctrl.urlBase}}layers/ground.png" alt="">
               </div>
             </div>
@@ -62,7 +62,7 @@
           <div class="row pokemon__player" ng-if="$ctrl.player.pokemon">
             <div class="col-6">
               <div class="row justify-content-center">
-                <img class="pokemon__battle__arena__pokemon pokemon__battle__arena__pokemon__player" ng-src="{{$ctrl.player.pokemon.imageBack}}" alt="">
+                <img ng-if="$ctrl.player.pokemon.life > 0" class="pokemon__battle__arena__pokemon pokemon__battle__arena__pokemon__player" ng-src="{{$ctrl.player.pokemon.imageBack}}" alt="">
                 <img class="pokemon__battle__arena__ground pokemon__battle__arena__ground__player w-100" src="{{$ctrl.urlBase}}layers/ground.png" alt="">
               </div>
             </div>
