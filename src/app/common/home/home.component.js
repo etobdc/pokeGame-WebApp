@@ -16,6 +16,8 @@ export const HomeComponent = {
       this.position = 3;
     }
     $onInit(){
+      this.victory = null;
+      this.disabled = false;
       this.Sounds.startSound(1);
       this.pokeMap();
       this.arrowKey = '';
@@ -33,32 +35,32 @@ export const HomeComponent = {
       this.pokemon = [
         {
           name: 'Bulbasaur',
-          life: 500,
+          life: 100,
           image: this.urlBase+'pokemon'+'/1.gif',
           imageBack: this.urlBase+'pokemon'+'/1_b.png',
           type: 'grass',
           attacks: [
             {
               name: 'Tackle',
-              power: 50,
+              power: 10,
               type_1: 'normal',
               type_2: null
             },
             {
               name: 'Vine Whip',
-              power: 45,
+              power: 20,
               type_1: 'grass',
               type_2: null
             },
             {
               name: 'Take Down',
-              power: 90,
+              power: 20,
               type_1: 'normal',
               type_2: null
             },
             {
               name: 'Razor Leaf',
-              power: 55,
+              power: 15,
               type_1: 'grass',
               type_2: null
             }
@@ -66,32 +68,32 @@ export const HomeComponent = {
         },
         {
           name: 'Charmander',
-          life: 500,
+          life: 100,
           image: this.urlBase+'pokemon'+'/4.gif',
           imageBack: this.urlBase+'pokemon'+'/4_b.png',
           type: 'fire',
           attacks: [
             {
               name: 'Scratch',
-              power: 40,
+              power: 10,
               type_1: 'normal',
               type_2: null
             },
             {
               name: 'Ember',
-              power: 40,
+              power: 20,
               type_1: 'fire',
               type_2: null
             },
             {
               name: 'Fire Fang',
-              power: 65,
+              power: 20,
               type_1: 'fire',
               type_2: null
             },
             {
               name: 'Flame Burst',
-              power: 90,
+              power: 15,
               type_1: 'fire',
               type_2: null
             }
@@ -99,32 +101,32 @@ export const HomeComponent = {
         },
         {
           name: 'Squirtle',
-          life: 500,
+          life: 100,
           image: this.urlBase+'pokemon'+'/7.gif',
           imageBack: this.urlBase+'pokemon'+'/7_b.png',
           type: 'watter',
           attacks: [
             {
               name: 'Tackle',
-              power: 40,
+              power: 10,
               type_1: 'normal',
               type_2: null
             },
             {
               name: 'Water Gun',
-              power: 40,
+              power: 20,
               type_1: 'watter',
               type_2: null
             },
             {
               name: 'Bubble',
-              power: 40,
+              power: 20,
               type_1: 'watter',
               type_2: null
             },
             {
               name: 'Aqua Tail',
-              power: 90,
+              power: 15,
               type_1: 'watter',
               type_2: null
             }
@@ -296,15 +298,53 @@ export const HomeComponent = {
       this.Sounds.startSound(14);
       this._cancelMove();
       this.inMovement = true;
-      let randPokemonOponent = Math.floor((Math.random() * 4) + 0);
-      let randPokemonPlayer = Math.floor((Math.random() * 4) + 0);
-      this.player.pokemon = this.pokemon[randPokemonPlayer];
-      this.oponent.pokemon = this.pokemon[randPokemonOponent];
-      $('#battleModal').modal('show');
+      this.$timeout(() => {
+        let randPokemonOponent = Math.floor((Math.random() * 4) + 0);
+        let randPokemonPlayer = Math.floor((Math.random() * 4) + 0);
+        this.player.pokemon = angular.copy(this.pokemon[randPokemonPlayer]);
+        this.oponent.pokemon = angular.copy(this.pokemon[randPokemonOponent]);
+      }).then(() => {
+        $('#battleModal').modal('show');
+      })
     }
     backToGame(){
+      $('#battleModal').modal('hide');
+
       this.Sounds.startSound(1);
       this.inMovement = false;
+      this.disabled = false;
+      this.victory = null;
+    }
+    attack(index){
+      this.disabled = true;
+      this.$timeout(() => {
+        if(this.player.pokemon.life > 0){
+          let dano = this.player.pokemon.attacks[index].power;
+          this.oponent.pokemon.life = this.oponent.pokemon.life - dano;
+          if(this.oponent.pokemon.life > 0){
+            this.$timeout(() => {
+              let randAttack = Math.floor((Math.random() * 4) + 0);
+              let danoOp = this.oponent.pokemon.attacks[randAttack].power;
+              this.player.pokemon.life = this.player.pokemon.life - danoOp;
+              this.disabled = false;
+            },500)
+            .then(() => {
+              this._whoWin();
+            })
+          }
+        }
+        return true;
+      })
+      .then(() => {
+        this._whoWin();
+      })
+    }
+    _whoWin(){
+      if(this.player.pokemon.life <= 0){
+        this.victory = 'op';
+      }else if(this.oponent.pokemon.life <= 0){
+        this.victory = 'player';
+      }
     }
   }
 };
