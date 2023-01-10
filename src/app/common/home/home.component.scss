@@ -57,6 +57,9 @@ body *{
   }
 }
 #battleModal{
+  .modal-body{
+    padding: 1rem 1rem 0 1rem;
+  }
   .modal-content{
     border: none;
     border-radius: 0px;
@@ -66,6 +69,64 @@ body *{
     border-radius: 0px;
   }
   .modal-footer{
-    border: none;
+    background: #fff;
+    margin-top: -0.8em;
+    z-index: 2;
+    box-shadow: 0px -1px 12px rgba(0, 0, 0, 0.37);
+  }
+  .pokemon__battle{
+    .pokemon__player{
+      margin-top: 2em;
+    }
+    &__buttom__attack{
+      margin-bottom: 0.2em;
+      margin-top: 0.2em;
+      border-radius: 0px;
+    }
+    &__arena{
+      &__pokemon{
+        height: 85px;
+        position: absolute;
+        &__player{
+          height: 120px;
+          top: 18px;
+        }
+      }
+      &__ground{
+        margin-top: 4.5em;
+        &__player{
+          margin-top: 5.5em;
+        }
+      }
+      &__data{
+        background: #fff6a6;
+        padding: 5px 5px 8px 10px;
+        border: 5px solid #000;
+        border-radius: 20px 6px 20px 6px;
+        &__name{
+          color: #000;
+        }
+        &__hp{
+          font-weight: 900;
+          color: orange;
+          .progress{
+            background-color: #000;
+            padding: 2px 5px;
+            border-radius: 10px!important;
+            span{
+              padding-right: 10px;
+            }
+            .progress-bar{
+              border-radius: 5px;
+              height: 10px!important;
+            }
+          }
+          &__points{
+            color: #000;
+            font-size: 12px;
+          }
+        }
+      }
+    }
   }
 }

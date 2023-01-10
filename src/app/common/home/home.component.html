@@ -32,11 +32,94 @@
     <div class="modal-content">
       <div class="modal-header">
       </div>
-      <div class="modal-body">
-        ...
+      <div class="modal-body pokemon__battle">
+        <div class="col-12 pokemon__battle__arena">
+          <div class="row pokemon__oponente" ng-if="$ctrl.oponent.pokemon">
+            <div class="col-6">
+              <div class="pokemon__battle__arena__data">
+                <span class="pokemon__battle__arena__data__name">{{$ctrl.oponent.pokemon.name}} Lvl 3</span>
+                <div class="pokemon__battle__arena__data__hp">
+                  <div class="progress d-flex align-items-center">
+                    <span>HP</span> <div ng-class="
+                    {
+                      'bg-success': $ctrl.oponent.pokemon.life >= 50,
+                      'bg-warning': $ctrl.oponent.pokemon.life < 50 && $ctrl.oponent.pokemon.life >= 15,
+                      'bg-danger': $ctrl.oponent.pokemon.life < 15
+                    }"
+                    class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$ctrl.oponent.pokemon.life}}" aria-valuemin="0" aria-valuemax="{{$ctrl.oponent.pokemon.life}}" style="width: {{$ctrl.oponent.pokemon.life}}%"></div>
+                  </div>
+                  <div class="pokemon__battle__arena__data__hp__points text-right w-100">100/{{$ctrl.oponent.pokemon.life > 0 ? $ctrl.oponent.pokemon.life : 0}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="row justify-content-center">
+                <img ng-if="$ctrl.oponent.pokemon.life > 0" class="pokemon__battle__arena__pokemon" src="{{$ctrl.oponent.pokemon.image}}" alt="">
+                <img class="pokemon__battle__arena__ground w-100" src="{{$ctrl.urlBase}}layers/ground.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="row pokemon__player" ng-if="$ctrl.player.pokemon">
+            <div class="col-6">
+              <div class="row justify-content-center">
+                <img ng-if="$ctrl.player.pokemon.life > 0" class="pokemon__battle__arena__pokemon pokemon__battle__arena__pokemon__player" ng-src="{{$ctrl.player.pokemon.imageBack}}" alt="">
+                <img class="pokemon__battle__arena__ground pokemon__battle__arena__ground__player w-100" src="{{$ctrl.urlBase}}layers/ground.png" alt="">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="pokemon__battle__arena__data">
+                <span class="pokemon__battle__arena__data__name">{{$ctrl.player.pokemon.name}} Lvl 3</span>
+                <div class="pokemon__battle__arena__data__hp">
+                  <div class="progress d-flex align-items-center">
+                    <span>HP</span> <div ng-class="
+                    {
+                      'bg-success': $ctrl.player.pokemon.life >= 50,
+                      'bg-warning': $ctrl.player.pokemon.life < 50 && $ctrl.player.pokemon.life >= 15,
+                      'bg-danger': $ctrl.player.pokemon.life < 15
+                    }"
+                    class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$ctrl.player.pokemon.life}}" aria-valuemin="0" aria-valuemax="{{$ctrl.player.pokemon.life}}" style="width: {{$ctrl.player.pokemon.life}}%"></div>
+                  </div>
+                  <div class="pokemon__battle__arena__data__hp__points text-right w-100">100/{{$ctrl.player.pokemon.life > 0 ? $ctrl.player.pokemon.life : 0}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Run!</button>
+        <div class="col-12" ng-if="$ctrl.victory == null">
+          <div class="row">
+            <div class="col-10">
+              <div class="row">
+                <div class="col-6" ng-repeat="attack in $ctrl.player.pokemon.attacks track by $index">
+                  <button ng-disabled="$ctrl.disabled" ng-click="$ctrl.attack($index)" ng-class="{
+                    'btn-success': attack.type_1 == 'grass',
+                    'btn-danger': attack.type_1 == 'fire',
+                    'btn-warning': attack.type_1 == 'normal',
+                    'btn-primary': attack.type_1 == 'watter'
+                  }"
+                  type="button" class="w-100 btn  pokemon__battle__buttom__attack" name="button">
+                    {{attack.name}}/{{attack.power}}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-2 d-flex align-items-center">
+              <button ng-click="$ctrl.backToGame()" type="button" class="btn btn-danger">Run!</button>
+            </div>
+          </div>
+        </div>
+        <div ng-if="$ctrl.victory != null" class="col-12 text-center">
+          <div class="row">
+            <div class="col-12">
+              <span class="pokemon__battle__arena__data__name" ng-if="$ctrl.victory == 'player'">Player venceu!</span>
+              <span class="pokemon__battle__arena__data__name" ng-if="$ctrl.victory == 'op'">Oponente venceu!</span>
+            </div>
+            <div class="col-12">
+              <button ng-click="$ctrl.backToGame()" type="button" class="btn btn-info">Ok!</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
