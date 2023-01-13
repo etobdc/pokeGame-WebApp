@@ -26,4 +26,4 @@ export const AppModule = angular
   })
   .service('Image',ImageService)
   .service('Sounds',SoundsService)
-  .name;SoundsService
+  .name;
