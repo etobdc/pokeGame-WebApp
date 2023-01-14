@@ -78,7 +78,7 @@ export const PokemapComponent = {
         name: 'Test_'+new Date().getTime(),
         map: JSON.stringify(this.mapa)
       }
-      this.$http.post('http://localhost:8000/map', mapaFinal)
+      this.$http.post('http://localhost:3000/map', mapaFinal)
       .then((result) => {
         this.saving = false;
       })

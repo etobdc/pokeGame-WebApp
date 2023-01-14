@@ -137,7 +137,7 @@ export const HomeComponent = {
     }
 
     pokeMap(){
-      this.$http.get('http://localhost:8000/map/1')
+      this.$http.get('http://localhost:3000/map/1')
       .then((result) => {
         if(result.data){
           this.mapa = result.data;
