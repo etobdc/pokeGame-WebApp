@@ -64,16 +64,19 @@ export class SoundsService {
         name: '16 Battle! Mew',
         path: this.urlBaseSounds+'16.mp3'
       },
-    ]
+    ];
   }
   startSound (musicIndex){
     this.audio.src = this.sounds[musicIndex].path;
     this.audio.pause();
     this.audio.currentTime = 0;
     this.audio.addEventListener('ended', function() {
-        this.currentTime = 0;
-        this.play();
+      this.currentTime = 0;
+      this.play();
     }, false);
     this.audio.play();
+  }
+  stopSound(){
+    this.audio.pause();
   }
 }

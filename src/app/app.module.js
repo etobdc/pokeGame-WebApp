@@ -21,7 +21,7 @@ export const AppModule = angular
   .component('app', AppComponent)
   .config(($locationProvider, $urlRouterProvider) => {
     'ngInject';
-    $locationProvider.html5Mode(false);
+    $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
   })
   .service('Image',ImageService)

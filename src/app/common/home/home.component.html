@@ -1,137 +1,18 @@
-<section class="fixedSection">
-  <div class="container-fluid pokeMap--padding">
-    <div class="row h-100-vh justify-content-center align-items-center">
-      <div class="col-12">
-        <table class="pokeMap pokeMapTable pokeMapTable__home pokeMap--noBorder pokeMap--noOverflow d-flex justify-content-center">
-          <tbody class="player">
-            <tr ng-repeat="map in $ctrl.mapa.map track by $index">
-              <td
-              style="background-image: url({{$ctrl.Image.imageType[col.type].image}})"
-              ng-repeat='col in map.colunas track by $index'
-              ng-class="{'pokeMapTable__td': col.object != '','playerHere': col.id == $ctrl.player.position.x && col.id_map == $ctrl.player.position.y}"
-              class="pokeMap--before"
-              >
-                <img draggable="false" ng-if="col.object != ''" src="{{$ctrl.Image.imageType[col.object].image}}">
-
-                <img draggable="false" class="pokeMapTable__td__img __top" ng-if="col.beforeOne != ''" src="{{col.beforeOne}}">
-                <img draggable="false" class="pokeMapTable__td__img __down" ng-if="col.afterOne != ''" src="{{col.afterOne}}">
-                <img draggable="false" class="pokeMapTable__td__img __left" ng-if="col.beforeTwo != ''" src="{{col.beforeTwo}}">
-                <img draggable="false" class="pokeMapTable__td__img __right" ng-if="col.afterTwo != ''" src="{{col.afterTwo}}">
-
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+<section class="pokemenu">
+  <div class="row container-fluid h-100-vh justify-content-center align-items-center">
+    <div class="col-2">
+      <h1 class="text-center">
+        <img class="pokelogo" src="{{$ctrl.urlBase}}logo.png" />
+      </h1>
+      <a ng-href="pokegame">
+        <button type="button" class="btn w-100 mt-3 btn-success">Start</button>
+      </a>
+      <a ng-href="pokemap">
+        <button type="button" class="btn w-100 mt-3 btn-info">Map generator</button>
+      </a>
+      <a ng-href="pokemon">
+        <button type="button" class="btn w-100 mt-3 btn-info">Pokémon list</button>
+      </a>
     </div>
   </div>
 </section>
-<!-- Modal -->
-<div class="modal fade" id="battleModal" tabindex="-1" role="dialog" aria-labelledby="battleModalTitle" data-backdrop="static" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-      </div>
-      <div class="modal-body pokemon__battle">
-        <div class="col-12 pokemon__battle__arena">
-          <div class="row pokemon__oponente" ng-if="$ctrl.oponent.pokemon">
-            <div class="col-6">
-              <div class="pokemon__battle__arena__data">
-                <span class="pokemon__battle__arena__data__name">{{$ctrl.oponent.pokemon.name}} Lvl 3</span>
-                <div class="pokemon__battle__arena__data__hp">
-                  <div class="progress d-flex align-items-center">
-                    <span>HP</span> <div ng-class="
-                    {
-                      'bg-success': $ctrl.oponent.pokemon.life >= 50,
-                      'bg-warning': $ctrl.oponent.pokemon.life < 50 && $ctrl.oponent.pokemon.life >= 15,
-                      'bg-danger': $ctrl.oponent.pokemon.life < 15
-                    }"
-                    class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$ctrl.oponent.pokemon.life}}" aria-valuemin="0" aria-valuemax="{{$ctrl.oponent.pokemon.life}}" style="width: {{$ctrl.oponent.pokemon.life}}%"></div>
-                  </div>
-                  <div class="pokemon__battle__arena__data__hp__points text-right w-100">100/{{$ctrl.oponent.pokemon.life > 0 ? $ctrl.oponent.pokemon.life : 0}}</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="row justify-content-center">
-                <img ng-if="$ctrl.oponent.pokemon.life > 0" class="pokemon__battle__arena__pokemon" src="{{$ctrl.oponent.pokemon.image}}" alt="">
-                <img class="pokemon__battle__arena__ground w-100" src="{{$ctrl.urlBase}}layers/ground.png" alt="">
-              </div>
-            </div>
-          </div>
-          <div class="row pokemon__player" ng-if="$ctrl.player.pokemon">
-            <div class="col-6">
-              <div class="row justify-content-center">
-                <img ng-if="$ctrl.player.pokemon.life > 0" class="pokemon__battle__arena__pokemon pokemon__battle__arena__pokemon__player" ng-src="{{$ctrl.player.pokemon.imageBack}}" alt="">
-                <img class="pokemon__battle__arena__ground pokemon__battle__arena__ground__player w-100" src="{{$ctrl.urlBase}}layers/ground.png" alt="">
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="pokemon__battle__arena__data">
-                <span class="pokemon__battle__arena__data__name">{{$ctrl.player.pokemon.name}} Lvl 3</span>
-                <div class="pokemon__battle__arena__data__hp">
-                  <div class="progress d-flex align-items-center">
-                    <span>HP</span> <div ng-class="
-                    {
-                      'bg-success': $ctrl.player.pokemon.life >= 50,
-                      'bg-warning': $ctrl.player.pokemon.life < 50 && $ctrl.player.pokemon.life >= 15,
-                      'bg-danger': $ctrl.player.pokemon.life < 15
-                    }"
-                    class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$ctrl.player.pokemon.life}}" aria-valuemin="0" aria-valuemax="{{$ctrl.player.pokemon.life}}" style="width: {{$ctrl.player.pokemon.life}}%"></div>
-                  </div>
-                  <div class="pokemon__battle__arena__data__hp__points text-right w-100">100/{{$ctrl.player.pokemon.life > 0 ? $ctrl.player.pokemon.life : 0}}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <div class="col-12" ng-if="$ctrl.victory == null">
-          <div class="row">
-            <div class="col-10">
-              <div class="row">
-                <div class="col-6" ng-repeat="attack in $ctrl.player.pokemon.attacks track by $index">
-                  <button ng-disabled="$ctrl.disabled" ng-click="$ctrl.attack($index)" ng-class="{
-                    'btn-success': attack.type_1 == 'grass',
-                    'btn-danger': attack.type_1 == 'fire',
-                    'btn-warning': attack.type_1 == 'normal',
-                    'btn-primary': attack.type_1 == 'watter'
-                  }"
-                  type="button" class="w-100 btn  pokemon__battle__buttom__attack" name="button">
-                    {{attack.name}}/{{attack.power}}
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="col-2 d-flex align-items-center">
-              <button ng-click="$ctrl.backToGame()" type="button" class="btn btn-danger">Run!</button>
-            </div>
-          </div>
-        </div>
-        <div ng-if="$ctrl.victory != null" class="col-12 text-center">
-          <div class="row">
-            <div class="col-12">
-              <span class="pokemon__battle__arena__data__name" ng-if="$ctrl.victory == 'player'">Player venceu!</span>
-              <span class="pokemon__battle__arena__data__name" ng-if="$ctrl.victory == 'op'">Oponente venceu!</span>
-            </div>
-            <div class="col-12">
-              <button ng-click="$ctrl.backToGame()" type="button" class="btn btn-info">Ok!</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<style media="screen">
-  .player:before{
-    background-image: url({{$ctrl.player.image}});
-    left: {{($ctrl.player.position.x)*40}}px;
-    top: {{($ctrl.player.position.y)*40}}px;
-  }
-  .player{
-    left: calc({{($ctrl.player.position.x)*-40}}px + 10%);
-    top: {{($ctrl.player.position.y)*-40}}px;
-  }
-</style>

@@ -153,6 +153,6 @@ export class ImageService {
         isObject:true,
         imagePath: '',
       },
-    ]
+    ];
   }
 }
