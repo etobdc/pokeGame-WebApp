@@ -6,7 +6,7 @@ const webpack = require('webpack');
 
 const extractPlugin = new ExtractTextPlugin({
   filename: 'bundle.css'
-})
+});
 
 module.exports = {
   entry: './app/app.module.js',
@@ -16,9 +16,12 @@ module.exports = {
     filename: 'bundle.js',
   },
   resolve: {
-    modules: [path.resolve(__dirname, 'src'), "node_modules"],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   devtool: 'source-map',
+  devServer: {
+    host: '0.0.0.0',
+  },
   module: {
     rules: [
       {
@@ -38,12 +41,12 @@ module.exports = {
         use: extractPlugin.extract({
           use: [
             {
-              loader: "css-loader", options: {
+              loader: 'css-loader', options: {
                 sourceMap: true
               }
             },
             {
-              loader: "sass-loader", options: {
+              loader: 'sass-loader', options: {
                 sourceMap: true
               }
             }
@@ -80,9 +83,9 @@ module.exports = {
     }),
     new CleanWebpackPlugin(['dist']),
     new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-        Popper: ['popper.js', 'default']
+      $: 'jquery',
+      jQuery: 'jquery',
+      Popper: ['popper.js', 'default']
     })
   ]
 };

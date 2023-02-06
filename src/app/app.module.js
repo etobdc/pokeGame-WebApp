@@ -17,7 +17,7 @@ export const AppModule = angular
     CommonModule,
     ComponentsModule,
   ])
-  .constant('urlBase','http://localhost:8080/media/')
+  .constant('urlBase','http://192.168.10.27:8080/media/')
   .component('app', AppComponent)
   .config(($locationProvider, $urlRouterProvider) => {
     'ngInject';
