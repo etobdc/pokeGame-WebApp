@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import templateUrl from './pokegame.component.html';
 import './pokegame.component.scss';
 
@@ -15,6 +16,7 @@ export const PokegameComponent = {
       this.$interval = $interval;
       this.position = 3;
     }
+
     $onInit(){
       this.victory = null;
       this.disabled = false;
@@ -142,7 +144,6 @@ export const PokegameComponent = {
           if(result.data){
             this.mapa = result.data;
             this.mapa.map = JSON.parse(this.mapa.map);
-            console.log(this.mapa);
           }
         });
     }
@@ -252,6 +253,7 @@ export const PokegameComponent = {
       }
       return false;
     }
+
     _playerUp(){
       if((this.player.position.y - 1) >= 0){
         if(this._canImoveMe(this.player.position.x,(this.player.position.y-1))){
@@ -260,6 +262,7 @@ export const PokegameComponent = {
       }
       return false;
     }
+
     _playerLeft(){
       if((this.player.position.x - 1) >= 0){
         if(this._canImoveMe((this.player.position.x-1),this.player.position.y)){
@@ -268,6 +271,7 @@ export const PokegameComponent = {
       }
       return false;
     }
+
     _playerRight(){
       if(this.player.position.x < (this.mapa.map.length - 1)){
         if(this._canImoveMe((this.player.position.x+1),this.player.position.y)){
@@ -276,9 +280,11 @@ export const PokegameComponent = {
       }
       return false;
     }
+
     _canImoveMe(x,y){
       return (this.Image.imageType[this.mapa.map[y].colunas[x].type].canPass && !(this.mapa.map[y].colunas[x].object != ''));
     }
+
     _cancelMove(){
       this.$interval.cancel(this.movePlayer);
       this.movePlayer = undefined;
@@ -294,6 +300,7 @@ export const PokegameComponent = {
         this._startBattle();
       }
     }
+
     _startBattle(){
       this.Sounds.startSound(14);
       this._cancelMove();
@@ -315,6 +322,7 @@ export const PokegameComponent = {
       this.disabled = false;
       this.victory = null;
     }
+
     attack(index){
       this.disabled = true;
       this.$timeout(() => {
@@ -339,6 +347,7 @@ export const PokegameComponent = {
           this._whoWin();
         });
     }
+
     _whoWin(){
       if(this.player.pokemon.life <= 0){
         this.victory = 'op';
