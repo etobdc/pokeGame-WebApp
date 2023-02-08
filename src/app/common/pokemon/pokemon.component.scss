@@ -2,3 +2,13 @@
   margin-top: 1em;
   margin-bottom: 1em;
 }
+.pokedex {
+  &__pokemon {
+    transition: 0.3s;
+    cursor: pointer;
+    &:hover {
+      transition: 0.3s;
+      box-shadow: 1px 2px 18px 0px #ffff2126;
+    }
+  }
+}

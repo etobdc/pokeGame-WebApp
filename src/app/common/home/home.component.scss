@@ -1,0 +1,43 @@
+.pokemenu {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  backdrop-filter: blur(7px);
+  &__backdrop {
+    backdrop-filter: saturate(180%) blur(3px);
+  }
+  &__box {
+    background-color: #ffffffad;
+    padding: 2.5em!important;
+    border-radius: 7px;
+    transition: 0.3s ease;
+    button {
+      position: relative;
+      height: 3.5em;
+      font-weight: 900;
+      letter-spacing: 3px;
+      &:hover{
+        .pokemenu__box__image {
+          display: block;
+          transition: 1s ease;
+        }
+      }
+    }
+    &__image {
+      position: absolute;
+      transition: 1s ease;
+      display: none;
+      &__player {
+        left: 0.5em;
+        bottom: 0.5em;
+      }
+      &__pokemon {
+        right: -1.1em;
+        top: -1.2em;
+      }
+    }
+  }
+  .btn-pokemon {
+    // border: 2px solid green;
+  }
+}

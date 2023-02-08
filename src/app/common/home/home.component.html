@@ -1,17 +1,29 @@
-<section class="pokemenu">
-  <div class="row container-fluid h-100-vh justify-content-center align-items-center">
-    <div class="col-2">
+<section class="pokemenu" style="background-image: url('media/background_3.jpg');">
+  <div class="row container-fluid h-100-vh justify-content-center align-items-center no-gutters pokemenu__backdrop">
+    <div class="col-3 pokemenu__box">
       <h1 class="text-center">
         <img class="pokelogo" src="{{$ctrl.urlBase}}logo.png" />
       </h1>
       <a ng-href="/#!/pokegame">
-        <button type="button" class="btn w-100 mt-3 btn-success">Start</button>
+        <button type="button" class="btn btn-outline-success w-100 mt-3 text-uppercase btn-pokemon">
+          <img class="pokemenu__box__image pokemenu__box__image__player" src="{{$ctrl.urlBase}}player/male/right.gif">
+          Start
+          <img class="pokemenu__box__image pokemenu__box__image__pokemon" src="{{$ctrl.pokeAleatorio()}}">
+        </button>
+      </a>
+      <a ng-href="/#!/pokedex">
+        <button type="button" class="btn btn-outline-success w-100 mt-3 text-uppercase btn-pokemon">
+          <img class="pokemenu__box__image pokemenu__box__image__player" src="{{$ctrl.urlBase}}player/male/right.gif">
+          Pokédex
+          <img class="pokemenu__box__image pokemenu__box__image__pokemon" src="{{$ctrl.pokeAleatorio()}}">
+        </button>
       </a>
       <a ng-href="/#!/pokemap">
-        <button type="button" class="btn w-100 mt-3 btn-info">Map generator</button>
-      </a>
-      <a ng-href="/#!/pokemon">
-        <button type="button" class="btn w-100 mt-3 btn-info">Pokémon list</button>
+        <button type="button" class="btn btn-outline-success w-100 mt-3 text-uppercase btn-pokemon">
+          <img class="pokemenu__box__image pokemenu__box__image__player" src="{{$ctrl.urlBase}}player/male/right.gif">
+          Map generator
+          <img class="pokemenu__box__image pokemenu__box__image__pokemon" src="{{$ctrl.pokeAleatorio()}}">
+        </button>
       </a>
     </div>
   </div>

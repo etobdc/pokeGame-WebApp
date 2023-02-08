@@ -13,5 +13,10 @@ export const HomeComponent = {
     $onInit(){
       this.Sounds.stopSound();
     }
+    pokeAleatorio(){
+      let number = Math.floor(Math.random() * (150 - 1 + 1)) + 1;
+
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png`;
+    }
   }
 };

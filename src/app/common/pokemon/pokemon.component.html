@@ -1,25 +1,29 @@
-<section>
+<section class="pokedex">
   <div class="container">
     <div class="row justify-content-center">
-      <h1 class="pokeTitulo">Pokémons</h1>
+      <h1 class="pokeTitulo">Pokédex</h1>
     </div>
   </div>
   <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" ng-if="$ctrl.pokemon.length > 0">
       <table class="col-6">
         <thead>
           <tr>
-            <td>#ID</td>
-            <td>Nome</td>
+            <td width="10%"></td>
+            <td width=""></td>
+            <td width="20%"></td>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              1
+          <tr ng-repeat="pokemon in $ctrl.pokemon track by $index" class="pokedex__pokemon">
+            <td align="center">
+              #{{$index + 1}}
             </td>
             <td>
-              teseee teste
+              <p class="text-center text-capitalize m-0">{{pokemon.name}}</p>
+            </td>
+            <td align="center">
+              <img draggable="false" ng-if="col.object != ''" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{$index + 1}}.png">
             </td>
           </tr>
         </tbody>

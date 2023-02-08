@@ -12,7 +12,7 @@ export const PokemonModule = angular
     'ngInject';
     $stateProvider
       .state('pokemon', {
-        url: '/pokemon',
+        url: '/pokedex',
         component: 'pokemon',
       });
   })
