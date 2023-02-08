@@ -12,11 +12,27 @@ export const HomeComponent = {
     }
     $onInit(){
       this.Sounds.stopSound();
+      this.poke1 =
+      this.poke2 = this.pokeAleatorio();
+      this.poke3 = this.pokeAleatorio();
     }
     pokeAleatorio(){
       let number = Math.floor(Math.random() * (150 - 1 + 1)) + 1;
-
-      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png`;
+      return number;
+    }
+    pokeShuffle (poke) {
+      let number = this.pokeAleatorio();
+      switch (poke) {
+      case 1:
+        this.poke1 = number;
+        break;
+      case 2:
+        this.poke2 = number;
+        break;
+      case 3:
+        this.poke3 = number;
+        break;
+      }
     }
   }
 };
