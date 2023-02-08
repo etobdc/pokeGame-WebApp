@@ -180,25 +180,25 @@ export const PokegameComponent = {
             this.player.image = this.urlBase+'player/male/front.gif';
             this.movePlayer = this.$interval(() => {
               this.playerMove('down');
-            }, 75);
+            }, 200);
             break;
           case 'ArrowUp':
             this.player.image = this.urlBase+'player/male/back.gif';
             this.movePlayer = this.$interval(() => {
               this.playerMove('up');
-            }, 75);
+            }, 200);
             break;
           case 'ArrowLeft':
             this.player.image = this.urlBase+'player/male/left.gif';
             this.movePlayer = this.$interval(() => {
               this.playerMove('left');
-            }, 75);
+            }, 200);
             break;
           case 'ArrowRight':
             this.player.image = this.urlBase+'player/male/right.gif';
             this.movePlayer = this.$interval(() => {
               this.playerMove('right');
-            }, 75);
+            }, 200);
             break;
           case 'Enter':
             console.log('enter');
